@@ -41,6 +41,8 @@ public:
         }
         return matriz;
     }
+    friend void showMatriz(Matriz* m);//no se debe usar aqui
+
 
     
     
@@ -55,6 +57,15 @@ public:
   
 
 };
+void showMatriz(Matriz* m) { // no ss recomienda usar ya que esta funcion tiene acceso a metodos de las clases lo que lo hace peligroso, se recomienda friebd void para clases que estan netamente relacionadas.
+    for (int i = 0; i < m->Filas; ++i) {
+        for (int j = 0; j<m->Col; ++j) {
+            cout << m->puntero_Matriz[i][j] << " "; //lo mismo que puntero_Matriz[i][j]
+        }
+        cout << "\n";
+    }
+
+}
 int main()
 {   
     Matriz *matriz1 = new Matriz(5, 10); //tiene que ser tipo puntero para que se pueda acceder a sus metodos de la clase.
@@ -64,7 +75,8 @@ int main()
     matriz2->rellenarMatrizAleatoria();
 
     cout << "Matriz 1 \n";  
-    matriz1->mostrarMatriz();
+    //matriz1->mostrarMatriz();
+    showMatriz(matriz1);
     cout << "\nMatriz 2"<<endl;
     matriz2->mostrarMatriz();
 
